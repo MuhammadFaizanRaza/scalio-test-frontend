@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+  <div class="card col-6">
+    <div class="card-body">
+      <h5 class="card-title text-center">Find Record</h5>
+      <div *ngIf="errorMessage" class="mt-2 alert alert-danger">
+        <p>{{ errorMessage }}</p>
+      </div>
+      <form class="row g-3" [formGroup]="form" (ngSubmit)="submit()">
+        <div class="col-12">
+          <label for="id">Enter Id:</label>
+          <input
+            formControlName="id"
+            id="id"
+            type="number"
+            class="form-control"
+          />
+          <div
+            *ngIf="f['id'].touched && f['id'].invalid"
+            class="mt-2 alert alert-danger"
+          >
+            <div *ngIf="f['id'].errors && f['id'].errors['required']">
+              Id is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="!form.valid"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
